@@ -2,8 +2,19 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="$USER_HOME$/.Rider2018.1/system/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_logic-expert.-1690622798.00" t="ExcludeRecursive" />
-    <e p="$PROJECT_DIR$" t="IncludeFlat">
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="Program.cs" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="logic-expert.csproj" t="IncludeRecursive" />
       <e p="logic-expert.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.1" t="Include">
+            <e p="logic-expert.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
     </e>
   </component>
 </project>
