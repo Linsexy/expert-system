@@ -4,9 +4,16 @@ namespace logic_expert
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
-            Console.WriteLine("Tom deska!");
+            if (args.Length < 1)
+            {
+                Console.Error.WriteLine("you have to provide an input file");
+                return 1;
+            }
+            Console.WriteLine("reading from " + args[0]);
+            var parser = new Parser(args[0]);
+            return 0;
         }
     }
 }
