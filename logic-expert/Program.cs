@@ -13,6 +13,8 @@ namespace logic_expert
             }
             Console.WriteLine("reading from " + args[0]);
             var parser = new Parser(args[0]);
+            parser.Parse();
+            var inferenceEngine = InferenceEngine()
             return 0;
         }
     }
