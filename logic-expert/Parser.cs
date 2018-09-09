@@ -18,7 +18,7 @@ namespace logic_expert
             _filename = fileName;
             _queries = new List<string>();
             _facts = new Dictionary<string, Value>();
-            _ifAndOnlyRules = new Dictionary<Rule, Expr>();
+            _ifAndOnlyRules = new Dictionary<string, Tuple<Rule, Expr>>();
             _implyRules = new Dictionary<Rule, List<Expr>>();
         }
 
@@ -27,7 +27,6 @@ namespace logic_expert
             var lines = System.IO.File.ReadAllLines(_filename);
             foreach (var line in lines)
             {
-                Console.WriteLine("analyzing " + line);
                 var toTokenize = line;
                 var posComment = line.IndexOf('#');
                 if (posComment != -1)
@@ -35,6 +34,7 @@ namespace logic_expert
 
                 if (toTokenize.Length > 0)
                 {
+                    Console.WriteLine("analyzing " + line);
                     if (toTokenize[0] == '=')
                         ParseFacts(toTokenize);
                     else if (toTokenize[0] == '?')
@@ -100,7 +100,8 @@ namespace logic_expert
         {
             var ret = new List<Rule>();
 
-            var rule = (Rule) MakeExpr(new List<String> {rules.Split(new char[] {' ', '\t'}).ToList()[0]});
+            var rule = (Rule) MakeExpr(new List<String> {rules.Split(new char[] {' ', '\t'},
+                StringSplitOptions.RemoveEmptyEntries).ToList()[0]});
             ret.Add(rule); //parse simple rules only for now
             //virer les OR/XOR, contruire une entrée dans la liste pour chaque opérande du &&
             
@@ -129,13 +130,13 @@ namespace logic_expert
                 .Split(new char[]{' ', '\t'}, StringSplitOptions.RemoveEmptyEntries).ToList());
             var lhs = TokenizeRule(toTokenize.Substring(0, posIAOF - 1));
 
-            _ifAndOnlyRules[lhs.First()] = rhs;
+            _ifAndOnlyRules[lhs.First().Name] = new Tuple<Rule, Expr>(lhs.First(), rhs);
         }
 
         private string _filename;
         public List<string> _queries;
         public Dictionary<string, Value> _facts; //rulename - actual value
         public Dictionary<Rule, List<Expr>> _implyRules; //A given Rule is satisfied when any Expr is validated
-        public Dictionary<Rule, Expr> _ifAndOnlyRules; // A given Rule is satisfied when Expr is validated
+        public Dictionary<string, Tuple<Rule, Expr>> _ifAndOnlyRules; // A given Rule is satisfied when Expr is validated
     }
 }

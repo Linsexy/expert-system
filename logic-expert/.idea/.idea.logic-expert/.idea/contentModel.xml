@@ -3,6 +3,9 @@
   <component name="ContentModelStore">
     <e p="$USER_HOME$/.Rider2018.1/system/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_logic-expert.-1690622798.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="Expr.cs" t="Include" />
+      <e p="InferenceEngine.cs" t="Include" />
+      <e p="Parser.cs" t="Include" />
       <e p="Program.cs" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
       <e p="logic-expert.csproj" t="IncludeRecursive" />
@@ -15,6 +18,11 @@
         </e>
       </e>
       <e p="packages" t="ExcludeRecursive" />
+      <e p="tests" t="Include">
+        <e p="base_input.txt" t="Include" />
+        <e p="base_input.txt~" t="Include" />
+        <e p="normal_input.txt" t="Include" />
+      </e>
     </e>
   </component>
 </project>

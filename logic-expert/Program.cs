@@ -14,7 +14,13 @@ namespace logic_expert
             Console.WriteLine("reading from " + args[0]);
             var parser = new Parser(args[0]);
             parser.Parse();
-            var inferenceEngine = InferenceEngine()
+            var inferenceEngine = new InferenceEngine(parser._facts, parser._implyRules, parser._ifAndOnlyRules);
+            var queries = parser._queries;
+            foreach (var query in queries)
+            {
+                var val = inferenceEngine.Infer(query);
+                Console.WriteLine("{0} : {1}", query, val);
+            }
             return 0;
         }
     }

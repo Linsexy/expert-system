@@ -14,9 +14,9 @@ namespace logic_expert
 
         public enum Value
         {
-            UNDEFINED,
-            TRUE,
-            FALSE
+            FALSE = 0,
+            TRUE = 1,
+            UNDEFINED
         }
         
         public abstract class Expr
@@ -28,6 +28,7 @@ namespace logic_expert
         {
             public Branch(Expr _lhs, char _op, Expr _rhs)
             {
+                type = Type.NODE;
                 lhs = _lhs;
                 op = _op;
                 rhs = _rhs;
@@ -43,8 +44,9 @@ namespace logic_expert
             public string Name;
             public Value Val;
             
-            public Rule(String rule)    
+            public Rule(String rule)
             {
+                type = Type.LEAF;
                 if (rule[0] == '!')
                 {
                     Val = Value.FALSE;
